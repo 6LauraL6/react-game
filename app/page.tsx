@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useState } from 'react';
 
 export default function Home() {
+
+  const[square,setSquare]=useState(Array(9).fill(null))
   return (
     <div className='container m-2'>
       <div className='row'>
