@@ -7,28 +7,29 @@ export default function Home() {
 
   const[square,setSquare]=useState(Array(9).fill("."))
 
-  function handleClick(){
+  function handleClick(i:number){
     const nextSquare = square.slice();
-    nextSquare[0] = "X"
+    nextSquare[i] = "X"
     setSquare(nextSquare);
   }
   
   return (
     <div className='container m-2'>
       <div className='row'>
-        <Square value={square[0]} onSquareClick={handleClick} />
-        <Square value={square[1]} onSquareClick={handleClick}/>
-        <Square value={square[3]} onSquareClick={handleClick}/>
+        <Square value={square[0]} onSquareClick={()=>handleClick(0)} />
+        <Square value={square[1]} onSquareClick={()=>handleClick(1)}/>
+        <Square value={square[3]} onSquareClick={()=>handleClick(2)}/>
       </div>
       <div className='row'>
-        <Square value={square[4]} onSquareClick={handleClick}/>
-        <Square value={square[5]} onSquareClick={handleClick}/>
-        <Square value={square[6]} onSquareClick={handleClick}/>
+        <Square value={square[4]} onSquareClick={()=>handleClick(3)}/>
+        <Square value={square[5]} onSquareClick={()=>handleClick(4)}/>
+        <Square value={square[6]} onSquareClick={()=>handleClick(5)}/>
       </div>
       <div className='row'>
-        <Square value={square[7]} onSquareClick={handleClick}/>
-        <Square value={square[8]} onSquareClick={handleClick}/>
-        <Square value={square[9]} onSquareClick={handleClick}/>
+        <Square value={square[7]} onSquareClick={()=>handleClick(6)}/>
+        <Square value={square[8]} onSquareClick={()=>handleClick(7)}/>
+        <Square value={square[9]} onSquareClick={()=>handleClick(8)}/>
+        
       </div>
     </div>
     
