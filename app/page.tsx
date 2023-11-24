@@ -1,16 +1,24 @@
-import Image from 'next/image'
-
 'use client';
 import { useState } from 'react';
 
-export default function Home() {
+export default function Board() {
 
+  const [xIsNext,setXIsNext] = useState(true)
   const[square,setSquare]=useState(Array(9).fill("."))
 
   function handleClick(i:number){
+
+    if(square[i]!=".")
+      return
+
     const nextSquare = square.slice();
-    nextSquare[i] = "X"
+    if(xIsNext)
+      nextSquare[i] ="X"
+    else
+      nextSquare[i] = "O"
+    
     setSquare(nextSquare);
+    setXIsNext(!xIsNext)
   }
   
   return (
@@ -43,5 +51,23 @@ export default function Home() {
 
     return <div  onClick={onSquareClick} className='col-3 col-md-2 p-3 border 
     fs-1 fw-bold text-center'>{value}</div>
+  }
+}
+function calcularWinner(squares){
+  const lines =[
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for(let i = 0; i < lines.length; i++){
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
   }
 }
